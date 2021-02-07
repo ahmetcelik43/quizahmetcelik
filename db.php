@@ -1,5 +1,5 @@
 <?php
-$host = "127.0.0.1";
+$host = "localhost";
 $user = "xlivacom_ahmet";
 $pass = "r=np?~OxV7-F";
 $db = "xlivacom_quiz";
