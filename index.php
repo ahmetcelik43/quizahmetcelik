@@ -1,6 +1,6 @@
 <?php
 include "db.php";
-//include "function.php";
+include "function.php";
 $jsonArray = array(); // array değişkenimiz bunu en alta json objesine çevireceğiz. 
 $jsonArray["hata"] = FALSE; // Başlangıçta hata yok olarak kabul edelim. 
 $_code = 200; // HTTP Ok olarak durumu kabul edelim. 
