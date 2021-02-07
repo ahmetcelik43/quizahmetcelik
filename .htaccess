@@ -10,6 +10,6 @@
     RewriteCond %{REQUEST_URI} !$ [NC]
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^ user.php [L]
+    RewriteRule ^ index.php [L]
 
 
