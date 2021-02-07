@@ -7,7 +7,6 @@ $_code = 200; // HTTP Ok olarak durumu kabul edelim.
 //https://fast-temple-97418.herokuapp.com
     // üye ekleme kısmı burada olacak. CREATE İşlemi 
  if($_SERVER['REQUEST_METHOD'] == "POST") {
-   echo(12);die();
 	$gelen_veri = json_decode(file_get_contents("php://input")); // veriyi alıp diziye atadık.
 
     //$kullaniciAdi = ($_POST["kullaniciAdi"]);
