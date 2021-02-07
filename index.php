@@ -8,7 +8,7 @@ $_code = 200; // HTTP Ok olarak durumu kabul edelim.
     // üye ekleme kısmı burada olacak. CREATE İşlemi 
  if($_SERVER['REQUEST_METHOD'] == "POST") {
 	$gelen_veri = json_decode(file_get_contents("php://input")); // veriyi alıp diziye atadık.
-
+    echo("tmm");die();
     //$kullaniciAdi = ($_POST["kullaniciAdi"]);
     //$adSoyad =($_POST["adSoyad"]);
     //$sifre = ($_POST["sifre"]);
