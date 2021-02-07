@@ -5,7 +5,7 @@ $pass = "r=np?~OxV7-F";
 $db = "xlivacom_quiz";
 
 try {
-	   echo(12);die();
+	  
 
 	$db = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
 }catch(PDOException $e) {
