@@ -62,7 +62,7 @@ $_code = 200; // HTTP Ok olarak durumu kabul edelim.
 		));
 		if($ekle2) {
 			$_code = 201;
-			$jsonArray["mesaj"] = "Başarılıyle eklendi";
+			$jsonArray["mesaj"] = "Eklendi";
 		}else {
 			$_code = 400;
 			 $jsonArray["hata"] = TRUE; // bir hata olduğu bildirilsin.
