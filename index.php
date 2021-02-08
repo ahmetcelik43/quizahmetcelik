@@ -149,9 +149,11 @@ else if($_SERVER['REQUEST_METHOD'] == "PUT") {
 		
 		if($query->rowCount()) {
 			
-			//$bilgiler = $db->query("select * from  uyeler where id='$user_id'")->fetch(PDO::FETCH_ASSOC);
 			$bilgiler = $query->fetch(PDO::FETCH_ASSOC);
 			$jsonArray["kullaniciAdi"] = $bilgiler["kullaniciAdi"];
+			$rolID = $bilgiler["rolID"];
+			$jsonArray["rol"] = $query = $db->query("select rol from roller where id= '$rolID' ")->fetchColumn();
+
 			$jsonArray["durum"] = "Giriş başarılı";
 
 			$_code = 200;
