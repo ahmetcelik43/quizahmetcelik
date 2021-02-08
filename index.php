@@ -136,20 +136,22 @@ else if($_SERVER['REQUEST_METHOD'] == "PUT") {
     	$jsonArray["hataMesaj"] = "Lütfen user_id değişkeni gönderin"; // Hatanın neden kaynaklı olduğu belirtilsin.
 	}
 } else if($_SERVER['REQUEST_METHOD'] == "GET") {
-
 	
+	$gelen_veri = json_decode(file_get_contents("php://input")); // veriyi alıp diziye atadık.
+              
     // üye bilgisi listeleme burada olacak. GET işlemi 
-    if(isset($_GET["posta"]) && !empty(trim($_GET["posta"])) && isset($_GET["sifre"]) && !empty(trim($_GET["sifre"]))) {
+    if(isset($gelen_veri->posta) && !empty(trim($gelen_veri->posta)) && isset($gelen_veri->sifre) && !empty(trim($gelen_veri->sifre))) {
 		//$user_id = intval($_GET["user_id"]);
-		$posta = $_GET["posta"];
-		$sifre = $_GET["sifre"];
-		$query = $db->query("select kullaniciAdi from uyeler where posta='$posta' and  sifre='$sifre'");
+		$posta = trim($gelen_veri->posta);
+		$sifre = trim($gelen_veri->sifre);
+	
+		$query = $db->query("select * from uyeler where posta='$posta' and  sifre='$sifre'");
 		
 		if($query->rowCount()) {
 			
 			//$bilgiler = $db->query("select * from  uyeler where id='$user_id'")->fetch(PDO::FETCH_ASSOC);
 			$bilgiler = $query->fetch(PDO::FETCH_ASSOC);
-			$jsonArray["uye-bilgileri"] = $bilgiler;
+			$jsonArray["kullaniciAdi"] = $bilgiler->kullaniciAdi;
 			$jsonArray["durum"] = "Giriş başarılı";
 
 			$_code = 200;
