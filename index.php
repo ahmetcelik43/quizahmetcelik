@@ -151,7 +151,7 @@ else if($_SERVER['REQUEST_METHOD'] == "PUT") {
 			
 			//$bilgiler = $db->query("select * from  uyeler where id='$user_id'")->fetch(PDO::FETCH_ASSOC);
 			$bilgiler = $query->fetch(PDO::FETCH_ASSOC);
-			$jsonArray["kullaniciAdi"] = $bilgiler["kullaniciAdi"];
+			$jsonArray["kullaniciAdi"] = $bilgiler;
 			$jsonArray["durum"] = "Giriş başarılı";
 
 			$_code = 200;
