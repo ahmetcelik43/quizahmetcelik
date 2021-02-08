@@ -9,7 +9,6 @@ try {
 
 
 	$db = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
-	echo(123);
 	//$db = new PDO($dsn);
 }catch(PDOException $e) {
 	echo $e->getMessage();
