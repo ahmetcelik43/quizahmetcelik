@@ -134,17 +134,14 @@ else if($_SERVER['REQUEST_METHOD'] == "PUT") {
 		
 		if($query->rowCount()) {
 			
-			$bilgiler = $query->fetch(PDO::FETCH_ASSOC);
-			$jsonArray["kullaniciAdi"] = $bilgiler;
-		
-			$_code = 200;
-			
+		$bilgiler = $query->fetch(PDO::FETCH_ASSOC);
+		$jsonArray["kategoriler"] = $bilgiler;
+		$_code = 200;	
 
 	}
   else {
     	$_code = 200;
-	$jsonArray["hata"] = TRUE;
- 	$jsonArray["hataMesaj"] = "Kategori Bulunamadı !";
+ 	$jsonArray["Mesaj"] = "Kategori Bulunamadı !";
 
 
 }
