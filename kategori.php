@@ -142,6 +142,7 @@ else if($_SERVER['REQUEST_METHOD'] == "PUT") {
   else {
     	$_code = 200;
  	$jsonArray["Mesaj"] = "Kategori Bulunamadı !";
+	$jsonArray["kategoriler"] = "";
 
 
 }
