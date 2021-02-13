@@ -139,13 +139,14 @@ else if($_SERVER['REQUEST_METHOD'] == "PUT") {
 //login
 } else if($_SERVER['REQUEST_METHOD'] == "GET") {
 	
-	$gelen_veri = json_decode(file_get_contents("php://input")); // veriyi alıp diziye atadık.
-              
+	//$gelen_veri = json_decode(file_get_contents("php://input")); // veriyi alıp diziye atadık.
+        $gelen_veri = $_SERVER['QUERY_STRING'];
+	parse_str($gelen_veri,$output);
     // üye bilgisi listeleme burada olacak. GET işlemi 
-    if(isset($gelen_veri->posta) && !empty(trim($gelen_veri->posta)) && isset($gelen_veri->sifre) && !empty(trim($gelen_veri->sifre))) {
+    if(isset($output["posta"]) && !empty(trim($output["posta"])) && isset($output["sifre"]) && !empty(trim($output["sifre"]))) {
 		//$user_id = intval($_GET["user_id"]);
-		$posta = trim($gelen_veri->posta);
-		$sifre = trim($gelen_veri->sifre);
+		$posta = trim($output["posta"]);
+		$sifre = trim($output["sifre"]);
 	
 		$query = $db->query("select * from uyeler where posta='$posta' and  sifre='$sifre'");
 		
