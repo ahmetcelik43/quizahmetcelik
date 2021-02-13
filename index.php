@@ -6,6 +6,7 @@ $jsonArray["hata"] = FALSE; // Başlangıçta hata yok olarak kabul edelim.
 $_code = 200; // HTTP Ok olarak durumu kabul edelim. 
 //https://fast-temple-97418.herokuapp.com
     // üye ekleme kısmı burada olacak. CREATE İşlemi 
+//register
  if($_SERVER['REQUEST_METHOD'] == "POST") {
 	 
 	$gelen_veri = json_decode(file_get_contents("php://input")); // veriyi alıp diziye atadık.
@@ -135,6 +136,7 @@ else if($_SERVER['REQUEST_METHOD'] == "PUT") {
 		$jsonArray["hata"] = TRUE; // bir hata olduğu bildirilsin.
     	$jsonArray["hataMesaj"] = "Lütfen user_id değişkeni gönderin"; // Hatanın neden kaynaklı olduğu belirtilsin.
 	}
+//login
 } else if($_SERVER['REQUEST_METHOD'] == "GET") {
 	
 	$gelen_veri = json_decode(file_get_contents("php://input")); // veriyi alıp diziye atadık.
