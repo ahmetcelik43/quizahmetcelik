@@ -145,6 +145,7 @@ else if($_SERVER['REQUEST_METHOD'] == "PUT") {
 
 
 }
+}
 else {
 	$_code = 406;
 	$jsonArray["hata"] = TRUE;
