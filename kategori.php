@@ -8,6 +8,7 @@ $_code = 200; // HTTP Ok olarak durumu kabul edelim.
 //https://fast-temple-97418.herokuapp.com
     // üye ekleme kısmı burada olacak. CREATE İşlemi 
 //register
+date_default_timezone_set('Europe/Istanbul'); 
  if($_SERVER['REQUEST_METHOD'] == "POST") {
 	 
 	$gelen_veri = json_decode(file_get_contents("php://input")); // veriyi alıp diziye atadık.
@@ -43,7 +44,7 @@ $_code = 200; // HTTP Ok olarak durumu kabul edelim.
 			 :createdAt)");
 			$ekle2 = $ex->execute(array(
 			"ad" => $gelen_veri->kategoriAdi,
-			"createdAt" => date("d-m-Y"),
+			"createdAt" => date("Y-m-d"),
 			
 		));
 		if($ekle2) {
