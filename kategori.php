@@ -3,7 +3,7 @@
 include "db.php";
 include "function.php";
 $jsonArray = array(); // array değişkenimiz bunu en alta json objesine çevireceğiz. 
-$jsonArray["hata"] = FALSE; // Başlangıçta hata yok olarak kabul edelim. 
+//$jsonArray["hata"] = FALSE; // Başlangıçta hata yok olarak kabul edelim. 
 $_code = 200; // HTTP Ok olarak durumu kabul edelim. 
 //https://fast-temple-97418.herokuapp.com
     // üye ekleme kısmı burada olacak. CREATE İşlemi 
@@ -152,6 +152,6 @@ else {
 
 
 SetHeader($_code);
-$jsonArray[$_code] = HttpStatus($_code);
+//$jsonArray[$_code] = HttpStatus($_code);
 echo json_encode($jsonArray);
 ?>
