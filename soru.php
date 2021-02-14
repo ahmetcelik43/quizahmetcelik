@@ -129,7 +129,7 @@ else if($_SERVER['REQUEST_METHOD'] == "GET") {
 	
     
 	
-		$query = $db->query("select s.soru , s.createdAt , s.id ,c.ad as kategori , c.id as soruID  as kategoriID from sorular s inner join categorys c on s.kategoriID = c.id");
+		$query = $db->query("select s.soru , s.createdAt , s.id ,c.ad as kategori , c.id as soruID , c.id as kategoriID from sorular s inner join categorys c on s.kategoriID = c.id");
 		
 		if($query->rowCount()) {
 		$bilgiler = $query->fetchAll(PDO::FETCH_ASSOC);
