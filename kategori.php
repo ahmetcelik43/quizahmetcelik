@@ -20,7 +20,7 @@ $_code = 200; // HTTP Ok olarak durumu kabul edelim.
     
     // Kontrollerimizi yapalım.
     // gelen kullanıcı adı veya e-posta veri tabanında kayıtlı mı kontrol edelim. 
-     echo($gelen_veri->kategoriAdi);die();
+     //echo($gelen_veri->kategoriAdi);die();
     if(!isset($gelen_veri->kategoriAdi) || empty($gelen_veri->kategoriAdi)) {
     	$_code = 400; 
 		$jsonArray["hata"] = TRUE; // bir hata olduğu bildirilsin.
