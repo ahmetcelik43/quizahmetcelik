@@ -43,7 +43,7 @@ $_code = 200; // HTTP Ok olarak durumu kabul edelim.
 			 :createdAt)");
 			$ekle2 = $ex->execute(array(
 			"ad" => $gelen_veri->kategoriAdi,
-			"createdAt" => date("d-m-Y"),
+			"createdAt" => date("d-m-Y H:i:s"),
 			
 		));
 		if($ekle2) {
