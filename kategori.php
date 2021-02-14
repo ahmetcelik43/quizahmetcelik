@@ -63,7 +63,7 @@ else if($_SERVER['REQUEST_METHOD'] == "PUT") {
     	// basitçe bi kontrol yaptık veriler varmı yokmu diye 
      if(	isset($gelen_veri->id) && 
      		!empty($gelen_veri->id) && isset($gelen_veri->ad) && !empty($gelen_veri->ad)
-     		)
+     		
      	) {
      		
      		
