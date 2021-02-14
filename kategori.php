@@ -26,6 +26,9 @@ date_default_timezone_set('Europe/Istanbul');
     // Kontrollerimizi yapalım.
     // gelen kullanıcı adı veya e-posta veri tabanında kayıtlı mı kontrol edelim. 
      //echo($gelen_veri->kategoriAdi);die();
+	 if($gelen_veri->action == "ekle")
+	 {
+		 
     if(!isset($gelen_veri->kategoriAdi) || empty($gelen_veri->kategoriAdi)) {
     	$_code = 400; 
 		$jsonArray["hata"] = TRUE; // bir hata olduğu bildirilsin.
@@ -59,14 +62,12 @@ date_default_timezone_set('Europe/Istanbul');
 			 $jsonArray["hata"] = TRUE; // bir hata olduğu bildirilsin.
        		 $jsonArray["hataMesaj"] = "Sistem Hatası.";
 		}
-	}
+    }
 }
-else if($_SERVER['REQUEST_METHOD'] == "PUT") {
-//      $gelen_veri = $_SERVER['QUERY_STRING']; parse_str($gelen_veri,$output);
-  	$gelen_veri = json_decode(file_get_contents("php://input")); // veriyi alıp diziye atadık.
-  	
-    	// basitçe bi kontrol yaptık veriler varmı yokmu diye 
-     if(	isset($gelen_veri->id) && 
+	 
+	 else if($gelen_veri->action == "guncelle")
+	 {
+		 if(	isset($gelen_veri->id) && 
      		!empty($gelen_veri->id) && isset($gelen_veri->ad) && !empty($gelen_veri->ad)
      		
      	) {
@@ -90,48 +91,40 @@ else if($_SERVER['REQUEST_METHOD'] == "PUT") {
 		 			$jsonArray["hataMesaj"] = "Sistemsel Bir Hata Oluştu";
 				}
 		}else {
-			// gerekli veriler eksik gelirse apiyi kulanacaklara hangi bilgileri istediğimizi bildirdik. 
 			$_code = 400;
 			$jsonArray["hata"] = TRUE;
 	 		$jsonArray["hataMesaj"] = "Kategori Adi ve id Verilerini json olarak göndermediniz.";
 		}
-} else if($_SERVER['REQUEST_METHOD'] == "DELETE") {
-	//$gelen_veri = json_decode(file_get_contents("php://input")); // veriyi alıp diziye atadık.
-	$wildcard=false;$credentials=false; 
-	$origin = $wildcard && !$credentials ? '*' : $_SERVER['HTTP_ORIGIN'];
-
-header("Access-Control-Allow-Origin: " . $origin);
-
-header("Access-Control-Allow-Methods: GET , POST, GET, PUT");
-      
-    $gelen_veri = $_SERVER['QUERY_STRING']; parse_str($gelen_veri,$output);
-    if(isset($output["id"]) && !empty(trim($output["id"]))) {
-		$id = intval($output["id"]);
-		$userVarMi = $db->query("select * from categorys where id='$id'")->rowCount();
-		if($userVarMi) {
-			
-			$sil = $db->query("delete from categorys where id='$id'");
-			if( $sil ) {
-				$_code = 200;
-				//$jsonArray["mesaj"] = "Silindi.";
-			}else {
-				// silme başarısız ise bilgi veriyoruz. 
-				$_code = 400;
-				$jsonArray["hata"] = TRUE;
-	 			$jsonArray["hataMesaj"] = "Sistemsel Bir Hata Oluştu";
-			}
-		}else {
-			$_code = 400; 
-			$jsonArray["hata"] = TRUE; // bir hata olduğu bildirilsin.
-    		$jsonArray["hataMesaj"] = "Geçersiz id"; // Hatanın neden kaynaklı olduğu belirtilsin.
-		}
-	}else {
-		$_code = 400;
-		$jsonArray["hata"] = TRUE; // bir hata olduğu bildirilsin.
-    	$jsonArray["hataMesaj"] = "Lütfen id değişkeni gönderin"; // Hatanın neden kaynaklı olduğu belirtilsin.
-	}
-//login
-} else if($_SERVER['REQUEST_METHOD'] == "GET") {
+     }
+     else if ($gelen_veri->action == "sil")
+     {
+        if(isset($gelen_veri->id) && !empty(trim($gelen_veri->id))) {
+            $id = intval($gelen_veri->id);
+            $userVarMi = $db->query("select * from categorys where id='$id'")->rowCount();
+            if($userVarMi) {
+                
+                $sil = $db->query("delete from categorys where id='$id'");
+                if( $sil ) {
+                    $_code = 200;
+                    //$jsonArray["mesaj"] = "Silindi.";
+                }else {
+                    $_code = 400;
+                    $jsonArray["hata"] = TRUE;
+                     $jsonArray["hataMesaj"] = "Sistemsel Bir Hata Oluştu";
+                }
+            }else {
+                $_code = 400; 
+                $jsonArray["hata"] = TRUE; // bir hata olduğu bildirilsin.
+                $jsonArray["hataMesaj"] = "Geçersiz id"; // Hatanın neden kaynaklı olduğu belirtilsin.
+            }
+        }else {
+            $_code = 400;
+            $jsonArray["hata"] = TRUE; // bir hata olduğu bildirilsin.
+            $jsonArray["hataMesaj"] = "Lütfen id değişkeni gönderin"; // Hatanın neden kaynaklı olduğu belirtilsin.
+        }
+     }
+}
+else if($_SERVER['REQUEST_METHOD'] == "GET") {
 	
 	//$gelen_veri = json_decode(file_get_contents("php://input")); // veriyi alıp diziye atadık.
         //$gelen_veri = $_SERVER['QUERY_STRING'];
