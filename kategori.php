@@ -44,7 +44,7 @@ date_default_timezone_set('Europe/Istanbul');
 			 :createdAt)");
 			$ekle2 = $ex->execute(array(
 			"ad" => $gelen_veri->kategoriAdi,
-			"createdAt" => date("Y-m-d"),
+			"createdAt" => date("Y-m-d H:i:s"),
 			
 		));
 		if($ekle2) {
