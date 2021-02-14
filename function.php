@@ -51,6 +51,8 @@ function HttpStatus($code) {
 // Header ayarlama fonksiyonu 
 function SetHeader($code){
     header("HTTP/1.1 ".$code." ".HttpStatus($code));
+    header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
+
     header("Content-Type: application/json; charset=utf-8");
     header("Access-Control-Allow-Methods:PUT, GET, POST, DELETE, OPTIONS; Access-Control-Allow-Origin:*");
 
