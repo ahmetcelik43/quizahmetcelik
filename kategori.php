@@ -29,7 +29,7 @@ $_code = 200; // HTTP Ok olarak durumu kabul edelim.
 
 
    
-	else if($db->query("SELECT * from uyeler WHERE  posta='$gelen_veri->kategoriAdi'")->rowCount() !=0)
+	else if($db->query("SELECT * from categorys WHERE  posta='$gelen_veri->kategoriAdi'")->rowCount() !=0)
 	 {
     	$_code = 400;
         $jsonArray["hata"] = TRUE; // bir hata olduğu bildirilsin.
@@ -57,24 +57,21 @@ $_code = 200; // HTTP Ok olarak durumu kabul edelim.
 	}
 }
 else if($_SERVER['REQUEST_METHOD'] == "PUT") {
-     $gelen_veri = json_decode(file_get_contents("php://input")); // veriyi alıp diziye atadık.
-    	
+//      $gelen_veri = $_SERVER['QUERY_STRING']; parse_str($gelen_veri,$output);
+  	$gelen_veri = json_decode(file_get_contents("php://input")); // veriyi alıp diziye atadık.
+  	
     	// basitçe bi kontrol yaptık veriler varmı yokmu diye 
-     if(	isset($gelen_veri->kullanici_adi) && 
-     		isset($gelen_veri->ad_soyad) && 
-     		isset($gelen_veri->posta) && 
-     		isset($gelen_veri->user_id) && 
-     		isset($gelen_veri->telefon)
+     if(	isset($gelen_veri->id) && 
+     		!empty($gelen_veri->id) && isset($gelen_veri->ad) && !empty($gelen_veri->ad)
+     		)
      	) {
      		
-     		// veriler var ise güncelleme yapıyoruz.
-				$q = $db->prepare("UPDATE uyeler SET kullaniciAdi= :kadi, adSoyad= :ad_soyad, posta= :posta, telefon= :telefon WHERE id= :user_id ");
+     		
+				$q = $db->prepare("UPDATE categorys SET ad= :ad  WHERE id= :id ");
 			 	$update = $q->execute(array(
-			 			"kadi" => $gelen_veri->kullanici_adi,
-			 			"ad_soyad" => $gelen_veri->ad_soyad,
-			 			"posta" => $gelen_veri->posta,
-			 			"telefon" => $gelen_veri->telefon,
-			 			"user_id" => $gelen_veri->user_id	 	
+			 			"ad" => trim($gelen_veri->ad),
+			 			"id" => $gelen_veri->id,
+			 				 	
 			 	));
 			 	// güncelleme başarılı ise bilgi veriyoruz. 
 			 	if($update) {
@@ -91,20 +88,20 @@ else if($_SERVER['REQUEST_METHOD'] == "PUT") {
 			// gerekli veriler eksik gelirse apiyi kulanacaklara hangi bilgileri istediğimizi bildirdik. 
 			$_code = 400;
 			$jsonArray["hata"] = TRUE;
-	 		$jsonArray["hataMesaj"] = "kullanici_adi,ad_soyad,posta,telefon,user_id Verilerini json olarak göndermediniz.";
+	 		$jsonArray["hataMesaj"] = "Kategori Adi ve id Verilerini json olarak göndermediniz.";
 		}
 } else if($_SERVER['REQUEST_METHOD'] == "DELETE") {
 
-    // üye silme işlemi burada olacak. DELETE işlemi 
-    if(isset($_GET["user_id"]) && !empty(trim($_GET["user_id"]))) {
-		$user_id = intval($_GET["user_id"]);
-		$userVarMi = $db->query("select * from uyeler where id='$user_id'")->rowCount();
+    $gelen_veri = $_SERVER['QUERY_STRING']; parse_str($gelen_veri,$output);
+    if(isset($gelen_veri["id"]) && !empty(trim($gelen_veri["id"]))) {
+		$id = intval($gelen_veri["id"]);
+		$userVarMi = $db->query("select * from categorys where id='$id'")->rowCount();
 		if($userVarMi) {
 			
-			$sil = $db->query("delete from uyeler where id='$user_id'");
+			$sil = $db->query("delete from categorys where id='$id'");
 			if( $sil ) {
 				$_code = 200;
-				$jsonArray["mesaj"] = "Üyelik Silindi.";
+				$jsonArray["mesaj"] = "Silindi.";
 			}else {
 				// silme başarısız ise bilgi veriyoruz. 
 				$_code = 400;
