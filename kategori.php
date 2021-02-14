@@ -8,11 +8,7 @@ $_code = 200; // HTTP Ok olarak durumu kabul edelim.
 //https://fast-temple-97418.herokuapp.com
     // üye ekleme kısmı burada olacak. CREATE İşlemi 
 //register
-  if (isset($_SERVER['HTTP_ORIGIN'])) {
-        header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
-        header('Access-Control-Allow-Credentials: true');
-        header('Access-Control-Max-Age: 86400');    // cache for 1 day
-    }
+  
 
     // Access-Control headers are received during OPTIONS requests
   
@@ -101,7 +97,9 @@ else if($_SERVER['REQUEST_METHOD'] == "PUT") {
 		}
 } else if($_SERVER['REQUEST_METHOD'] == "DELETE") {
 	//$gelen_veri = json_decode(file_get_contents("php://input")); // veriyi alıp diziye atadık.
-
+	
+        header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
+	header("Access-Control-Allow-Method: GET,POST,PUT,DELETE");
     $gelen_veri = $_SERVER['QUERY_STRING']; parse_str($gelen_veri,$output);
     if(isset($output["id"]) && !empty(trim($output["id"]))) {
 		$id = intval($output["id"]);
