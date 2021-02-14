@@ -77,12 +77,12 @@ else if($_SERVER['REQUEST_METHOD'] == "PUT") {
 			 	// güncelleme başarılı ise bilgi veriyoruz. 
 			 	if($update) {
 			 		$_code = 200;
-			 		$jsonArray["mesaj"] = "Güncelleme Başarılı";
+			 		//$jsonArray["mesaj"] = "Güncelleme Başarılı";
 			 	}
 			 	else {
 			 		// güncelleme başarısız ise bilgi veriyoruz. 
-			 		$_code = 400;
-					$jsonArray["hata"] = TRUE;
+			 		$_code = 500;
+					//$jsonArray["hata"] = TRUE;
 		 			$jsonArray["hataMesaj"] = "Sistemsel Bir Hata Oluştu";
 				}
 		}else {
@@ -102,7 +102,7 @@ else if($_SERVER['REQUEST_METHOD'] == "PUT") {
 			$sil = $db->query("delete from categorys where id='$id'");
 			if( $sil ) {
 				$_code = 200;
-				$jsonArray["mesaj"] = "Silindi.";
+				//$jsonArray["mesaj"] = "Silindi.";
 			}else {
 				// silme başarısız ise bilgi veriyoruz. 
 				$_code = 400;
@@ -117,7 +117,7 @@ else if($_SERVER['REQUEST_METHOD'] == "PUT") {
 	}else {
 		$_code = 400;
 		$jsonArray["hata"] = TRUE; // bir hata olduğu bildirilsin.
-    	$jsonArray["hataMesaj"] = "Lütfen user_id değişkeni gönderin"; // Hatanın neden kaynaklı olduğu belirtilsin.
+    	$jsonArray["hataMesaj"] = "Lütfen id değişkeni gönderin"; // Hatanın neden kaynaklı olduğu belirtilsin.
 	}
 //login
 } else if($_SERVER['REQUEST_METHOD'] == "GET") {
