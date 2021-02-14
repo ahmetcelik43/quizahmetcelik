@@ -8,6 +8,14 @@ $_code = 200; // HTTP Ok olarak durumu kabul edelim.
 //https://fast-temple-97418.herokuapp.com
     // üye ekleme kısmı burada olacak. CREATE İşlemi 
 //register
+  if (isset($_SERVER['HTTP_ORIGIN'])) {
+        header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
+        header('Access-Control-Allow-Credentials: true');
+        header('Access-Control-Max-Age: 86400');    // cache for 1 day
+    }
+
+    // Access-Control headers are received during OPTIONS requests
+  
 date_default_timezone_set('Europe/Istanbul'); 
  if($_SERVER['REQUEST_METHOD'] == "POST") {
 	 
