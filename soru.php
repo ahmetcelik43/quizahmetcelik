@@ -40,7 +40,13 @@ date_default_timezone_set('Europe/Istanbul');
 
 	else
 	 {
-    
+            if($db->query("SELECT * from sorular WHERE  kategoriID='$gelen_veri->kategoriID'")->rowCount() ==0)
+	    {
+		    $_code = 400; 
+        $jsonArray["hataMesaj"] = "Kategori Bulunamadı !"; 
+	    }
+	    else {
+		    
 
 			$ex = $db->prepare("insert into sorular(soru,kategoriID,createdAt) values(:soru,:kategoriID,:createdAt)");
 			$ekle2 = $ex->execute(array(
@@ -57,6 +63,7 @@ date_default_timezone_set('Europe/Istanbul');
 			 $jsonArray["hata"] = TRUE; // bir hata olduğu bildirilsin.
        		 $jsonArray["hataMesaj"] = "Sistem Hatası.";
 		}
+	    }
     }
 }
 	 
