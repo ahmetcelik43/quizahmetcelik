@@ -75,7 +75,13 @@ date_default_timezone_set('Europe/Istanbul');
      	)) {
      		if($db->query("SELECT * from sorular WHERE  id='$gelen_veri->id'")->rowCount() !=0)
 		{
-			
+			   if($db->query("SELECT * from sorular WHERE  kategoriID='$gelen_veri->kategoriID'")->rowCount() == 0)
+	    {
+		    $_code = 400; 
+                    $jsonArray["hataMesaj"] = "Kategori Bulunamadı !"; 
+	                      }
+			else
+			{
 				$q = $db->prepare("UPDATE sorular SET soru= :soru , kategoriID = :kategoriID  WHERE id= :id ");
 			 	$update = $q->execute(array(
 			 			"soru" => trim($gelen_veri->soru),
@@ -92,6 +98,7 @@ date_default_timezone_set('Europe/Istanbul');
 			 		$_code = 500;
 		 			$jsonArray["hataMesaj"] = "Sistemsel Bir Hata Oluştu";
 				}
+			}
 		}
 			 else
 			 {
