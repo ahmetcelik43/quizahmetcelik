@@ -130,9 +130,9 @@ else if($_SERVER['REQUEST_METHOD'] == "PUT") {
 		$query = $db->query("select * from categorys");
 		
 		if($query->rowCount()) {
-			
+		$jsonArray["kategoriler"] = [];	
 		$bilgiler = $query->fetch(PDO::FETCH_ASSOC);
-		$jsonArray["kategoriler"] = $bilgiler;
+		array_push($jsonArray["kategoriler"] ,$bilgiler);
 		$_code = 200;	
 
 	}
