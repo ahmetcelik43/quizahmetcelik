@@ -94,8 +94,8 @@ else if($_SERVER['REQUEST_METHOD'] == "PUT") {
 } else if($_SERVER['REQUEST_METHOD'] == "DELETE") {
 
     $gelen_veri = $_SERVER['QUERY_STRING']; parse_str($gelen_veri,$output);
-    if(isset($gelen_veri["id"]) && !empty(trim($gelen_veri["id"]))) {
-		$id = intval($gelen_veri["id"]);
+    if(isset($output["id"]) && !empty(trim($output["id"]))) {
+		$id = intval($output["id"]);
 		$userVarMi = $db->query("select * from categorys where id='$id'")->rowCount();
 		if($userVarMi) {
 			
