@@ -97,7 +97,12 @@ else if($_SERVER['REQUEST_METHOD'] == "PUT") {
 		}
 } else if($_SERVER['REQUEST_METHOD'] == "DELETE") {
 	//$gelen_veri = json_decode(file_get_contents("php://input")); // veriyi alıp diziye atadık.
-	
+	$wildcard=false;$credentials=false; 
+	$origin = $wildcard && !$credentials ? '*' : $_SERVER['HTTP_ORIGIN'];
+
+header("Access-Control-Allow-Origin: " . $origin);
+
+header("Access-Control-Allow-Methods: GET , POST, GET, PUT");
       
     $gelen_veri = $_SERVER['QUERY_STRING']; parse_str($gelen_veri,$output);
     if(isset($output["id"]) && !empty(trim($output["id"]))) {
