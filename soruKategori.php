@@ -17,7 +17,7 @@ date_default_timezone_set('Europe/Istanbul');
         if(isset($output["kategoriID"]) && !empty(trim($output["kategoriID"])))
         {
             $kategoriID = $output['kategoriID'];
-            $query = $db->query("select * from sorular where kategoriID='$kategoriID'");
+            $query = $db->query("select s.id as soruID, s.soru , s.createdAt , c.id as kategoriID , c.ad as kategoriAdi  from sorular s inner join categorys c on c.id=s.kategoriID  where kategoriID='$kategoriID'");
 		
             if($query->rowCount()) {
             $bilgiler = $query->fetchAll(PDO::FETCH_ASSOC);
