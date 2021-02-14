@@ -52,6 +52,8 @@ function HttpStatus($code) {
 function SetHeader($code){
     header("HTTP/1.1 ".$code." ".HttpStatus($code));
     header("Content-Type: application/json; charset=utf-8");
+    header("Access-Control-Allow-Methods:PUT, GET, POST, DELETE, OPTIONS; Access-Control-Allow-Origin:*);
+
 }
 
 // kullanıcı adının uyumluluğunu kontrol eden fonksiyonumuz.
