@@ -6,6 +6,7 @@ RewriteRule ^user$ index.php [QSA,L]
 RewriteRule ^kategori$ kategori.php [QSA,L]
 RewriteRule ^soru$ soru.php [QSA,L]
 RewriteRule ^cevap$ cevap.php [QSA,L]
+RewriteRule ^soru/kategori$ soruKategori.php [QSA,L]
 
 
 
