@@ -92,11 +92,11 @@ else if($_SERVER['REQUEST_METHOD'] == "PUT") {
 	 		$jsonArray["hataMesaj"] = "Kategori Adi ve id Verilerini json olarak göndermediniz.";
 		}
 } else if($_SERVER['REQUEST_METHOD'] == "DELETE") {
-	$gelen_veri = json_decode(file_get_contents("php://input")); // veriyi alıp diziye atadık.
+	//$gelen_veri = json_decode(file_get_contents("php://input")); // veriyi alıp diziye atadık.
 
-    //$gelen_veri = $_SERVER['QUERY_STRING']; parse_str($gelen_veri,$output);
-    if(isset($gelen_veri->id) && !empty(trim($gelen_veri->id))) {
-		$id = intval($gelen_veri->id);
+    $gelen_veri = $_SERVER['QUERY_STRING']; parse_str($gelen_veri,$output);
+    if(isset($output["id"]) && !empty(trim($output["id"]))) {
+		$id = intval($output["id"]);
 		$userVarMi = $db->query("select * from categorys where id='$id'")->rowCount();
 		if($userVarMi) {
 			
