@@ -131,7 +131,7 @@ else if($_SERVER['REQUEST_METHOD'] == "PUT") {
 		
 		if($query->rowCount()) {
 		//$jsonArray["kategoriler"] = [];	
-		$bilgiler = $query->fetch(PDO::FETCH_ASSOC);
+		$bilgiler = $query->fetchAll(PDO::FETCH_ASSOC);
 		$jsonArray["kategoriler"]  = $bilgiler;
 		$_code = 200;	
 
