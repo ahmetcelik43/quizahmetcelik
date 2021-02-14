@@ -29,7 +29,7 @@ $_code = 200; // HTTP Ok olarak durumu kabul edelim.
 
 
    
-	else if($db->query("SELECT * from categorys WHERE  posta='$gelen_veri->kategoriAdi'")->rowCount() !=0)
+	else if($db->query("SELECT * from categorys WHERE  ad='$gelen_veri->kategoriAdi'")->rowCount() !=0)
 	 {
     	$_code = 400;
         $jsonArray["hata"] = TRUE; // bir hata olduğu bildirilsin.
