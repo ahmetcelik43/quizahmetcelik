@@ -140,9 +140,8 @@ else if($_SERVER['REQUEST_METHOD'] == "GET") {
 		$query = $db->query("select * from categorys");
 		
 		if($query->rowCount()) {
-		//$jsonArray["kategoriler"] = [];	
 		$bilgiler = $query->fetchAll(PDO::FETCH_ASSOC);
-		$jsonArray["kategoriler"]  = $bilgiler;
+		$jsonArray  = $bilgiler;
 		$_code = 200;	
 
 	}
