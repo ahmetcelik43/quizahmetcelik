@@ -71,7 +71,7 @@ date_default_timezone_set('Europe/Istanbul');
 			
 				$q = $db->prepare("UPDATE sorular SET soru= :soru , kategoriID = :kategoriID  WHERE id= :id ");
 			 	$update = $q->execute(array(
-			 			"soru" => trim($gelen_veri->ad),
+			 			"soru" => trim($gelen_veri->soru),
                          "kategoriID" => $gelen_veri->kategoriID,
                          "id"=>$gelen_veri->id
 			 				 	
