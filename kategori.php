@@ -71,8 +71,9 @@ date_default_timezone_set('Europe/Istanbul');
      		!empty($gelen_veri->id) && isset($gelen_veri->ad) && !empty($gelen_veri->ad)
      		
      	) {
-     		
-     		
+     		if($db->query("SELECT * from categorys WHERE  id='$gelen_veri->id'")->rowCount() !=0)
+		{
+			
 				$q = $db->prepare("UPDATE categorys SET ad= :ad  WHERE id= :id ");
 			 	$update = $q->execute(array(
 			 			"ad" => trim($gelen_veri->ad),
@@ -85,11 +86,15 @@ date_default_timezone_set('Europe/Istanbul');
 			 		//$jsonArray["mesaj"] = "Güncelleme Başarılı";
 			 	}
 			 	else {
-			 		// güncelleme başarısız ise bilgi veriyoruz. 
 			 		$_code = 500;
-					//$jsonArray["hata"] = TRUE;
 		 			$jsonArray["hataMesaj"] = "Sistemsel Bir Hata Oluştu";
 				}
+		}
+			 else
+			 {
+				        $_code = 400;
+		 			$jsonArray["hataMesaj"] = "Geçersiz kategori id";
+			 }
 		}else {
 			$_code = 400;
 			$jsonArray["hata"] = TRUE;
