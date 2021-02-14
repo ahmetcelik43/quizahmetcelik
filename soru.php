@@ -138,7 +138,7 @@ else if($_SERVER['REQUEST_METHOD'] == "GET") {
 
 	}
   else {
-    	$_code = 400;
+    	$_code = 200;
  	$jsonArray["Mesaj"] = "Sorular Bulunamadı !";
 
 
