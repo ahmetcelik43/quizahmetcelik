@@ -1,8 +1,8 @@
 <?php
-$host = "sql7.freemysqlhosting.net";
-$user = "sql7391574";
-$pass = "TmJxjaEdAd";
-$db = "sql7391574";
+$host = "remotemysql.com";
+$user = "zjx0BZjenx";
+$pass = "4MyRmrY0lR";
+$db = "zjx0BZjenx";
 
 try {
 //	  $dsn = "pgsql:host=$host;port=5432;dbname=$db;user=$username;password=$password";
