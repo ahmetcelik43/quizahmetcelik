@@ -99,11 +99,7 @@ date_default_timezone_set('Europe/Istanbul');
 				}
 			}
 		
-			 else
-			 {
-				        $_code = 400;
-		 			$jsonArray["hataMesaj"] = "Geçersiz soru id";
-			 }
+		
 		}else {
 			$_code = 400;
 			$jsonArray["hata"] = TRUE;
