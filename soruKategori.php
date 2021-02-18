@@ -26,7 +26,7 @@ date_default_timezone_set('Europe/Istanbul');
     
         }
       else {
-            $_code = 400;
+            $_code = 200;
          $jsonArray["Mesaj"] = "Sorular Bulunamadı !";
     
     
