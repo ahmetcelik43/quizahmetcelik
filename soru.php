@@ -40,7 +40,7 @@ date_default_timezone_set('Europe/Istanbul');
 
 	else
 	 {
-            if($db->query("SELECT * from sorular WHERE  kategoriID = '$gelen_veri->kategoriID'")->rowCount() ==0)
+            if($db->query("SELECT * from categorys WHERE  id = '$gelen_veri->kategoriID'")->rowCount() ==0)
 	    {
 		    $_code = 400; 
         $jsonArray["hataMesaj"] = "Kategori Bulunamadı !"; 
@@ -73,7 +73,7 @@ date_default_timezone_set('Europe/Istanbul');
      		!empty($gelen_veri->id) && isset($gelen_veri->soru) && !empty($gelen_veri->soru && isset($gelen_veri->kategoriID) && !empty($gelen_veri->kategoriID)
      		
      	)) {
-     		if($db->query("SELECT * from sorular WHERE  id='$gelen_veri->id'")->rowCount() !=0)
+     		if($db->query("SELECT * from categorys WHERE  id='$gelen_veri->id'")->rowCount() !=0)
 		{
 			   if($db->query("SELECT * from sorular WHERE  kategoriID='$gelen_veri->kategoriID'")->rowCount() == 0)
 	    {
@@ -115,7 +115,7 @@ date_default_timezone_set('Europe/Istanbul');
      {
         if(isset($gelen_veri->id) && !empty(trim($gelen_veri->id))) {
             $id = intval($gelen_veri->id);
-            $userVarMi = $db->query("select * from sorular where id='$id'")->rowCount();
+            $userVarMi = $db->query("select * from categorys where id='$id'")->rowCount();
             if($userVarMi) {
                 
                 $sil = $db->query("delete from sorular where id='$id'");
