@@ -40,7 +40,7 @@ date_default_timezone_set('Europe/Istanbul');
 
 	else
 	 {
-            if($db->query("SELECT * from sorular WHERE  kategoriID = $gelen_veri->kategoriID")->rowCount() ==0)
+            if($db->query("SELECT * from sorular WHERE  kategoriID = '$gelen_veri->kategoriID'")->rowCount() ==0)
 	    {
 		    $_code = 400; 
         $jsonArray["hataMesaj"] = "Kategori Bulunamadı !"; 
